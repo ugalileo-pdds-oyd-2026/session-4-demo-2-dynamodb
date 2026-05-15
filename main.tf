@@ -1,15 +1,12 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
+module "event_log" {
+  source = "./modules/dynamodb-table"
+
+  table_name    = "event-log-${var.environment}"
+  environment   = var.environment
+  billing_mode  = "PAY_PER_REQUEST"
+  ttl_attribute = "expires_at"
+
+  tags = {
+    Service = "event-collector"
   }
-  required_version = ">= 1.8"
 }
-
-provider "aws" {
-  region = var.region
-}
-
-# TODO: add module call here after completing modules/dynamodb-table/

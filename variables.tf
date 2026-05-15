@@ -1,6 +1,8 @@
-variable "region"      {
-    type = string
-    default = "us-west-2"
+variable "region" {
+  type    = string
+  default = "us-west-2"
 }
-variable "environment" { type = string }
-variable "table_name"  { type = string }
+variable "environment" {
+  type        = string
+  description = "Environment for the DynamoDB table (e.g., dev, staging, prod)"
+}
